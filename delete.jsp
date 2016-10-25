@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>插入数据</title>
+<title>删除数据</title>
 </head>
 <body>
     <%
@@ -27,18 +27,12 @@
     	   out.print("</br>");
        }
        %>
-       <h1>插入信息后：</h1>
+       <h1>删除信息后：</h1>
        <%
-       String cx="insert into student values(?,?,?,?)";
+       String cx="delete  from student where id=?";
        PreparedStatement zm=con.prepareStatement(cx);
        int id=Integer.parseInt(request.getParameter("id"));
-       String name=request.getParameter("name");
-       int age=Integer.parseInt(request.getParameter("age"));
-       String zy=request.getParameter("major");
        zm.setInt(1,id);
-       zm.setString(2,name);
-       zm.setInt(3,age);
-       zm.setString(4,zy);
        int a=zm.executeUpdate();
        System.out.print(zm.toString());
        %>
@@ -57,6 +51,6 @@
        z.close();
        con.close();
     %>
-        <p>插入成功</p>
+        <p>删除成功</p>
 </body>
 </html>
