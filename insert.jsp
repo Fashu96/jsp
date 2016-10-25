@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*,java.io.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,9 +16,9 @@
     <%
        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
        String url="jdbc:sqlserver://localhost:1433;DatabaseName=xs";
-       Connection con=DriverManager.getConnection(url,"wdl","");
+       Connection con=DriverManager.getConnection(url,"qian","");
        Statement z=con.createStatement();
-       ResultSet m=z.executeQuery("select * from student");
+       ResultSet m=z.executeQuery("select * from Student01");
        while(m.next()){
     	   out.print(m.getInt("id"));
     	   out.print(m.getString("name"));
@@ -29,7 +29,7 @@
        %>
        <h1>插入信息后：</h1>
        <%
-       String cx="insert into student values(?,?,?,?)";
+       String cx="insert into Student01 values(?,?,?,?)";
        PreparedStatement zm=con.prepareStatement(cx);
        int id=Integer.parseInt(request.getParameter("id"));
        String name=request.getParameter("name");
@@ -44,7 +44,7 @@
        %>
        <% 
         z=con.createStatement();
-        m=z.executeQuery("select * from student");
+        m=z.executeQuery("select * from Student01");
        while(m.next()){
     	   out.print(m.getInt("id"));
     	   out.print(m.getString("name"));
